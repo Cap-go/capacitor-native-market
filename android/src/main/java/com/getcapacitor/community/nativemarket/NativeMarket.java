@@ -92,9 +92,7 @@ public class NativeMarket extends Plugin {
       Context context = this.getContext();
       Intent intent = new Intent(Intent.ACTION_VIEW);
       intent.setData(
-        Uri.parse(
-          "https://play.google.com/store/apps/topic?id=" + editorChoice
-        )
+        Uri.parse("https://play.google.com/store/apps/topic?id=" + editorChoice)
       );
       intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
       context.startActivity(intent);
