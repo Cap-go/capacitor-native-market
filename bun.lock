@@ -3,9 +3,6 @@
   "workspaces": {
     "": {
       "name": "@capgo/native-market",
-      "dependencies": {
-        "@capacitor/core": "^7.0.0",
-      },
       "devDependencies": {
         "@capacitor/android": "^7.0.0",
         "@capacitor/cli": "^7.0.0",

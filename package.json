@@ -14,9 +14,6 @@
   "bugs": {
     "url": "https://github.com/Cap-go/native-market/issues"
   },
-  "dependencies": {
-    "@capacitor/core": "^7.0.0"
-  },
   "keywords": [
     "capacitor",
     "plugin",
@@ -42,8 +39,8 @@
   },
   "devDependencies": {
     "@capacitor/android": "^7.0.0",
-    "@capacitor/cli": "^7.0.0",
     "@capacitor/core": "^7.0.0",
+    "@capacitor/cli": "^7.0.0",
     "@capacitor/docgen": "^0.3.0",
     "@capacitor/ios": "^7.0.0",
     "@ionic/eslint-config": "^0.4.0",
