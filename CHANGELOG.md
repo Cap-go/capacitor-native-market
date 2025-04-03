@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.1.5](https://github.com/Cap-go/capacitor-native-market/compare/7.1.4...7.1.5) (2025-04-03)
+
+
+### Bug Fixes
+
+* url issue ([4e2bce4](https://github.com/Cap-go/capacitor-native-market/commit/4e2bce4d809d1027b369814fc31858742ae03cbf))
+
 ### [7.1.4](https://github.com/Cap-go/native-market/compare/7.1.3...7.1.4) (2025-04-03)
 
 ### [7.1.3](https://github.com/Cap-go/native-market/compare/7.1.2...7.1.3) (2025-04-03)
