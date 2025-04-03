@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.1.2](https://github.com/Cap-go/native-market/compare/7.1.1...7.1.2) (2025-04-03)
+
+
+### Bug Fixes
+
+* lint issue ([25d7acc](https://github.com/Cap-go/native-market/commit/25d7acc9a5a91affaaad5acb7f3fe42c0f5ec8c0))
+
 ### [7.1.1](https://github.com/Cap-go/native-market/compare/7.1.0...7.1.1) (2025-02-09)
 
 
