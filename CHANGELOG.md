@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.1.1](https://github.com/Cap-go/native-market/compare/7.1.0...7.1.1) (2025-02-09)
+
+
+### Bug Fixes
+
+* add missing class ([a781465](https://github.com/Cap-go/native-market/commit/a781465433f190d14f9c0cc09defb3795086354b))
+
 ## [7.1.0](https://github.com/Cap-go/native-market/compare/6.0.2...7.1.0) (2025-02-08)
 
 
