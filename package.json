@@ -9,10 +9,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Cap-go/native-market.git"
+    "url": "git+https://github.com/Cap-go/capacitor-native-market.git"
   },
   "bugs": {
-    "url": "https://github.com/Cap-go/native-market/issues"
+    "url": "https://github.com/Cap-go/capacitor-native-market/issues"
   },
   "keywords": [
     "capacitor",
