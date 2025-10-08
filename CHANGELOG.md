@@ -1,6 +1,8 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
+
+## [7.1.7](https://github.com/Cap-go/capacitor-native-market/compare/7.1.6...7.1.7) (2025-10-08)
 
 ### [7.1.6](https://github.com/Cap-go/capacitor-native-market/compare/7.1.5...7.1.6) (2025-07-19)
 
