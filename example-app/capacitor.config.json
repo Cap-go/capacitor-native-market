@@ -1,0 +1,10 @@
+{
+  "appId": "com.example.capgo.native.market",
+  "appName": "@capgo/native-market example",
+  "webDir": "dist",
+  "plugins": {
+    "SplashScreen": {
+      "launchAutoHide": false
+    }
+  }
+}
