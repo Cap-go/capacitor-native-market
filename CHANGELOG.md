@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [7.1.10](https://github.com/Cap-go/capacitor-native-market/compare/7.1.9...7.1.10) (2025-10-09)
+
+
+### Bug Fixes
+
+* switch to ios new arch ([23554c6](https://github.com/Cap-go/capacitor-native-market/commit/23554c6802916469aca268ea0e0e49b42ef61d14))
+
 ## [7.1.9](https://github.com/Cap-go/capacitor-native-market/compare/7.1.8...7.1.9) (2025-10-08)
 
 ## [7.1.8](https://github.com/Cap-go/capacitor-native-market/compare/7.1.7...7.1.8) (2025-10-08)
