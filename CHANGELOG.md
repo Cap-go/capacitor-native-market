@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [7.1.16](https://github.com/Cap-go/capacitor-native-market/compare/7.1.15...7.1.16) (2025-10-15)
+
+
+### Bug Fixes
+
+* remove lockfix: lock and lint ([31f8962](https://github.com/Cap-go/capacitor-native-market/commit/31f8962d2cd62950b75a5fcc6404cf3f9435fa6f))
+
 ## [7.1.15](https://github.com/Cap-go/capacitor-native-market/compare/7.1.14...7.1.15) (2025-10-15)
 
 
