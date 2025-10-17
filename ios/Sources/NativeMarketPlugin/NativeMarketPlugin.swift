@@ -78,15 +78,15 @@ public class NativeMarket: CAPPlugin, CAPBridgedPlugin {
     }
 
     @objc func openDevPage(_ call: CAPPluginCall) {
-        call.resolve() // TODO: Implement
+        call.unimplemented("openDevPage is not implemented on iOS.")
     }
 
     @objc func openCollection(_ call: CAPPluginCall) {
-        call.resolve() // TODO: Implement
+        call.unimplemented("openCollection is not implemented on iOS.")
     }
 
     @objc func openEditorChoicePage(_ call: CAPPluginCall) {
-        call.resolve() // TODO: Implement
+        call.unimplemented("openEditorChoicePage is not implemented on iOS.")
     }
 
     @objc func search(_ call: CAPPluginCall) {
