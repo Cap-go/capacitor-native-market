@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [7.1.18](https://github.com/Cap-go/capacitor-native-market/compare/7.1.17...7.1.18) (2025-10-17)
+
+
+### Bug Fixes
+
+* cannot be done ([fef13f4](https://github.com/Cap-go/capacitor-native-market/commit/fef13f4e89cf9e1ef972a778b43591853cb924db))
+
 ## [7.1.17](https://github.com/Cap-go/capacitor-native-market/compare/7.1.16...7.1.17) (2025-10-16)
 
 ## [7.1.16](https://github.com/Cap-go/capacitor-native-market/compare/7.1.15...7.1.16) (2025-10-15)
