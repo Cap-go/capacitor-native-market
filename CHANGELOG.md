@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [7.1.20](https://github.com/Cap-go/capacitor-native-market/compare/7.1.19...7.1.20) (2025-10-20)
+
+
+### Bug Fixes
+
+* **deps:** update capacitor monorepo to v7.4.3 ([#69](https://github.com/Cap-go/capacitor-native-market/issues/69)) ([e69ccc1](https://github.com/Cap-go/capacitor-native-market/commit/e69ccc167e9c795249d4dca9af4db9322629256e))
+
 ## [7.1.19](https://github.com/Cap-go/capacitor-native-market/compare/7.1.18...7.1.19) (2025-10-20)
 
 ## [7.1.18](https://github.com/Cap-go/capacitor-native-market/compare/7.1.17...7.1.18) (2025-10-17)
