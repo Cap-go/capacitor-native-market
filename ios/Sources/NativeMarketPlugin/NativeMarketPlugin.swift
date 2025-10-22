@@ -25,8 +25,8 @@ struct APIResult: Codable {
  */
 @objc(NativeMarket)
 public class NativeMarket: CAPPlugin, CAPBridgedPlugin {
-    public let identifier = "InAppBrowserPlugin"
-    public let jsName = "InAppBrowser"
+    public let identifier = "NativeMarketPlugin"
+    public let jsName = "NativeMarket"
     public let pluginMethods: [CAPPluginMethod] = [
         CAPPluginMethod(name: "openStoreListing", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "openDevPage", returnType: CAPPluginReturnPromise),
