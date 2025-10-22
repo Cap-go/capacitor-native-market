@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [7.1.21](https://github.com/Cap-go/capacitor-native-market/compare/7.1.20...7.1.21) (2025-10-22)
+
+
+### Bug Fixes
+
+* rename plugin identifier and JavaScript name ([a395930](https://github.com/Cap-go/capacitor-native-market/commit/a3959305aa9dd1156df5a7c64e82afbad7192bfd))
+
 ## [7.1.20](https://github.com/Cap-go/capacitor-native-market/compare/7.1.19...7.1.20) (2025-10-20)
 
 
