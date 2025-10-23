@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [7.2.0](https://github.com/Cap-go/capacitor-native-market/compare/7.1.21...7.2.0) (2025-10-23)
+
+
+### Features
+
+* add getPluginVersion method to NativeMarket plugin and web implementation ([884b178](https://github.com/Cap-go/capacitor-native-market/commit/884b1787d0b95a2dd105c3638446d1d3bcffca19))
+
+
+### Bug Fixes
+
+* remove unnecessary content field from Discord release notification ([cb1e352](https://github.com/Cap-go/capacitor-native-market/commit/cb1e3528f44cdc32edd191bc79379c25d5212af0))
+
 ## [7.1.21](https://github.com/Cap-go/capacitor-native-market/compare/7.1.20...7.1.21) (2025-10-22)
 
 
