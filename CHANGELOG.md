@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [7.2.3](https://github.com/Cap-go/capacitor-native-market/compare/7.2.2...7.2.3) (2025-10-23)
+
+
+### Bug Fixes
+
+* add missing import for JSObject in NativeMarket.java ([4853a46](https://github.com/Cap-go/capacitor-native-market/commit/4853a46b8bc85e28e4243e7e8e7be5fa9e6d7281))
+
 ## [7.2.2](https://github.com/Cap-go/capacitor-native-market/compare/7.2.1...7.2.2) (2025-10-23)
 
 
