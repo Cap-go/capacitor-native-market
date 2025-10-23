@@ -3,6 +3,7 @@ package com.getcapacitor.community.nativemarket;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import com.getcapacitor.JSObject;
 import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
 import com.getcapacitor.PluginMethod;
