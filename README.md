@@ -202,6 +202,19 @@ Only in Android.
 
 --------------------
 
+
+### getPluginVersion()
+
+```typescript
+getPluginVersion() => Promise<{ version: string; }>
+```
+
+Get the native Capacitor plugin version
+
+**Returns:** <code>Promise&lt;{ version: string; }&gt;</code>
+
+--------------------
+
 </docgen-api>
 
 ## iOS Notes
