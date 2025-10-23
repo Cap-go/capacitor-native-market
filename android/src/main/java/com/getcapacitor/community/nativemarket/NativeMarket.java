@@ -11,6 +11,8 @@ import com.getcapacitor.annotation.CapacitorPlugin;
 @CapacitorPlugin(name = "NativeMarket")
 public class NativeMarket extends Plugin {
 
+    private final String PLUGIN_VERSION = "";
+
     @PluginMethod
     public void openStoreListing(PluginCall call) {
         try {
@@ -111,6 +113,17 @@ public class NativeMarket extends Plugin {
             call.resolve();
         } catch (Exception ex) {
             call.reject(ex.getLocalizedMessage());
+        }
+    }
+
+    @PluginMethod
+    public void getPluginVersion(final PluginCall call) {
+        try {
+            final JSObject ret = new JSObject();
+            ret.put("version", this.PLUGIN_VERSION);
+            call.resolve(ret);
+        } catch (final Exception e) {
+            call.reject("Could not get plugin version", e);
         }
     }
 }

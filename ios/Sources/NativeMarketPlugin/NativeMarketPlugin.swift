@@ -25,6 +25,7 @@ struct APIResult: Codable {
  */
 @objc(NativeMarket)
 public class NativeMarket: CAPPlugin, CAPBridgedPlugin {
+    private let PLUGIN_VERSION: String = ""
     public let identifier = "NativeMarketPlugin"
     public let jsName = "NativeMarket"
     public let pluginMethods: [CAPPluginMethod] = [
@@ -32,7 +33,8 @@ public class NativeMarket: CAPPlugin, CAPBridgedPlugin {
         CAPPluginMethod(name: "openDevPage", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "openCollection", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "openEditorChoicePage", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "search", returnType: CAPPluginReturnPromise)
+        CAPPluginMethod(name: "search", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "getPluginVersion", returnType: CAPPluginReturnPromise)
     ]
     @objc func openStoreListing(_ call: CAPPluginCall) {
         guard let appId = call.getString("appId") else {
@@ -110,4 +112,9 @@ public class NativeMarket: CAPPlugin, CAPBridgedPlugin {
             call.reject("terms is missing")
         }
     }
+
+    @objc func getPluginVersion(_ call: CAPPluginCall) {
+        call.resolve(["version": self.PLUGIN_VERSION])
+    }
+
 }

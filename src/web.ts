@@ -22,4 +22,8 @@ export class NativeMarketWeb extends WebPlugin implements NativeMarketPlugin {
   search(options: { terms: string }): Promise<void> {
     throw new Error('Method not implemented.' + options);
   }
+
+  async getPluginVersion(): Promise<{ version: string }> {
+    return { version: 'web' };
+  }
 }
