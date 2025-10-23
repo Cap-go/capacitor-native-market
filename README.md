@@ -111,17 +111,19 @@ NativeMarket.search({
 <docgen-api>
 <!--Update the source file JSDoc comments and rerun docgen to update the docs below-->
 
+Capacitor Native Market Plugin for opening app store listings and pages.
+
 ### openStoreListing(...)
 
 ```typescript
 openStoreListing(options: { appId: string; country?: string; }) => Promise<void>
 ```
 
-This method will launch link in Play/App Store.
+Launch app listing page in Play Store (Android) or App Store (iOS).
 
-| Param         | Type                                              |
-| ------------- | ------------------------------------------------- |
-| **`options`** | <code>{ appId: string; country?: string; }</code> |
+| Param         | Type                                              | Description                                   |
+| ------------- | ------------------------------------------------- | --------------------------------------------- |
+| **`options`** | <code>{ appId: string; country?: string; }</code> | - Configuration for opening the store listing |
 
 **Since:** 1.0.0
 
@@ -134,13 +136,12 @@ This method will launch link in Play/App Store.
 openDevPage(options: { devId: string; }) => Promise<void>
 ```
 
-This method will deep-link directly to an Play/App store listing page.
+Deep-link directly to a developer's page in the Play Store.
+Android only.
 
-Only in Android.
-
-| Param         | Type                            |
-| ------------- | ------------------------------- |
-| **`options`** | <code>{ devId: string; }</code> |
+| Param         | Type                            | Description                       |
+| ------------- | ------------------------------- | --------------------------------- |
+| **`options`** | <code>{ devId: string; }</code> | - Configuration with developer ID |
 
 **Since:** 1.0.0
 
@@ -153,12 +154,12 @@ Only in Android.
 openCollection(options: { name: string; }) => Promise<void>
 ```
 
-This method will link users to a collection or top charts.
-Only in Android.
+Link users to a collection or top charts in the Play Store.
+Android only.
 
-| Param         | Type                           |
-| ------------- | ------------------------------ |
-| **`options`** | <code>{ name: string; }</code> |
+| Param         | Type                           | Description                          |
+| ------------- | ------------------------------ | ------------------------------------ |
+| **`options`** | <code>{ name: string; }</code> | - Configuration with collection name |
 
 **Since:** 1.0.0
 
@@ -171,13 +172,12 @@ Only in Android.
 openEditorChoicePage(options: { editorChoice: string; }) => Promise<void>
 ```
 
-This method will link users to Editor's choice page.
+Link users to Editor's choice page in the Play Store.
+Android only.
 
-Only in Android.
-
-| Param         | Type                                   |
-| ------------- | -------------------------------------- |
-| **`options`** | <code>{ editorChoice: string; }</code> |
+| Param         | Type                                   | Description                           |
+| ------------- | -------------------------------------- | ------------------------------------- |
+| **`options`** | <code>{ editorChoice: string; }</code> | - Configuration with editor choice ID |
 
 **Since:** 1.0.0
 
@@ -190,13 +190,12 @@ Only in Android.
 search(options: { terms: string; }) => Promise<void>
 ```
 
-This method will link users to custom search query.
+Search the Play Store with custom search terms.
+Android only.
 
-Only in Android.
-
-| Param         | Type                            |
-| ------------- | ------------------------------- |
-| **`options`** | <code>{ terms: string; }</code> |
+| Param         | Type                            | Description                       |
+| ------------- | ------------------------------- | --------------------------------- |
+| **`options`** | <code>{ terms: string; }</code> | - Configuration with search terms |
 
 **Since:** 1.0.0
 
@@ -209,9 +208,11 @@ Only in Android.
 getPluginVersion() => Promise<{ version: string; }>
 ```
 
-Get the native Capacitor plugin version
+Get the native Capacitor plugin version.
 
 **Returns:** <code>Promise&lt;{ version: string; }&gt;</code>
+
+**Since:** 1.0.0
 
 --------------------
 

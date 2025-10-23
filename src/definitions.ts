@@ -1,66 +1,112 @@
+/**
+ * Capacitor Native Market Plugin for opening app store listings and pages.
+ *
+ * @since 1.0.0
+ */
 export interface NativeMarketPlugin {
   /**
-   * This method will launch link in Play/App Store.
+   * Launch app listing page in Play Store (Android) or App Store (iOS).
    *
-   * @param {String} appId - ID of your application. Eg. com.example.app
-   * @param {String} [country] - International country code if application is not published in the US App store (only for iOS). Eg. IT
-   *
-   * @returns void
-   *
+   * @param options - Configuration for opening the store listing
+   * @returns Promise that resolves when the store is opened
+   * @throws Error if opening the store fails
    * @since 1.0.0
+   * @example
+   * ```typescript
+   * // Open app in store
+   * await NativeMarket.openStoreListing({
+   *   appId: 'com.example.app'
+   * });
+   *
+   * // Open app in specific country store (iOS only)
+   * await NativeMarket.openStoreListing({
+   *   appId: 'com.example.app',
+   *   country: 'IT'
+   * });
+   * ```
    */
   openStoreListing(options: { appId: string; country?: string }): Promise<void>;
+
   /**
-   * This method will deep-link directly to an Play/App store listing page.
+   * Deep-link directly to a developer's page in the Play Store.
+   * Android only.
    *
-   * Only in Android.
-   *
-   * @param {String} devId - ID of developer. Eg. com.example.app
-   *
-   * @returns void
-   *
+   * @param options - Configuration with developer ID
+   * @returns Promise that resolves when the page is opened
+   * @throws Error if opening the page fails or if called on iOS
    * @since 1.0.0
+   * @example
+   * ```typescript
+   * await NativeMarket.openDevPage({
+   *   devId: 'Google+LLC'
+   * });
+   * ```
    */
   openDevPage(options: { devId: string }): Promise<void>;
+
   /**
-   * This method will link users to a collection or top charts.
-   * Only in Android.
+   * Link users to a collection or top charts in the Play Store.
+   * Android only.
    *
-   * @param {String} name - name of the collection. Click [here](https://developer.android.com/distribute/marketing-tools/linking-to-google-play#OpeningCollection) for android options.
-   *
-   * @returns void
-   *
+   * @param options - Configuration with collection name
+   * @returns Promise that resolves when the collection is opened
+   * @throws Error if opening the collection fails or if called on iOS
    * @since 1.0.0
+   * @example
+   * ```typescript
+   * await NativeMarket.openCollection({
+   *   name: 'featured'
+   * });
+   * ```
+   * @see https://developer.android.com/distribute/marketing-tools/linking-to-google-play#OpeningCollection
    */
   openCollection(options: { name: string }): Promise<void>;
+
   /**
-   * This method will link users to Editor's choice page.
+   * Link users to Editor's choice page in the Play Store.
+   * Android only.
    *
-   * Only in Android.
-   *
-   * @param {String} editorChoice - ID of your application. Eg. editorial_fitness_apps_us
-   * @returns void
-   *
+   * @param options - Configuration with editor choice ID
+   * @returns Promise that resolves when the page is opened
+   * @throws Error if opening the page fails or if called on iOS
    * @since 1.0.0
+   * @example
+   * ```typescript
+   * await NativeMarket.openEditorChoicePage({
+   *   editorChoice: 'editorial_fitness_apps_us'
+   * });
+   * ```
    */
   openEditorChoicePage(options: { editorChoice: string }): Promise<void>;
+
   /**
-   * This method will link users to custom search query.
+   * Search the Play Store with custom search terms.
+   * Android only.
    *
-   * Only in Android.
-   *
-   * @param {String} editorChoice - terms to be searched in Play/App store.
-   * @returns void
-   *
+   * @param options - Configuration with search terms
+   * @returns Promise that resolves when the search is opened
+   * @throws Error if opening search fails or if called on iOS
    * @since 1.0.0
+   * @example
+   * ```typescript
+   * await NativeMarket.search({
+   *   terms: 'fitness apps'
+   * });
+   * ```
    */
   search(options: { terms: string }): Promise<void>;
 
   /**
-   * Get the native Capacitor plugin version
+   * Get the native Capacitor plugin version.
    *
-   * @returns {Promise<{ id: string }>} an Promise with version for this device
-   * @throws An error if the something went wrong
+   * @returns Promise that resolves with the plugin version
+   * @throws Error if getting the version fails
+   * @since 1.0.0
+   * @example
+   * ```typescript
+   * const { version } = await NativeMarket.getPluginVersion();
+   * console.log('Plugin version:', version);
+   * ```
    */
   getPluginVersion(): Promise<{ version: string }>;
 }
