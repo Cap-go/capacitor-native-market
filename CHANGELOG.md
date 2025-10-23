@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [7.2.1](https://github.com/Cap-go/capacitor-native-market/compare/7.2.0...7.2.1) (2025-10-23)
+
+
+### Bug Fixes
+
+* remove footer in discord ([11566bb](https://github.com/Cap-go/capacitor-native-market/commit/11566bb5530d20b7f7bb487a6f70c0cd1f2cd4ae))
+* update Discord release notification username to include repository name ([587e140](https://github.com/Cap-go/capacitor-native-market/commit/587e1409be9437488b8db43039ad6421755065c1))
+
 ## [7.2.0](https://github.com/Cap-go/capacitor-native-market/compare/7.1.21...7.2.0) (2025-10-23)
 
 
