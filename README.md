@@ -112,6 +112,19 @@ NativeMarket.search({
 });
 ```
 
+## API
+
+<docgen-index>
+
+* [`openStoreListing(...)`](#openstorelisting)
+* [`openDevPage(...)`](#opendevpage)
+* [`openCollection(...)`](#opencollection)
+* [`openEditorChoicePage(...)`](#openeditorchoicepage)
+* [`search(...)`](#search)
+* [`getPluginVersion()`](#getpluginversion)
+
+</docgen-index>
+
 <docgen-api>
 <!--Update the source file JSDoc comments and rerun docgen to update the docs below-->
 
