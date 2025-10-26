@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [7.2.6](https://github.com/Cap-go/capacitor-native-market/compare/7.2.5...7.2.6) (2025-10-26)
+
+
+### Bug Fixes
+
+* prevent bump for app ([f25bdc1](https://github.com/Cap-go/capacitor-native-market/commit/f25bdc1ae2b084a979ca7d4699e512547f212e1a))
+
 ## [7.2.5](https://github.com/Cap-go/capacitor-native-market/compare/7.2.4...7.2.5) (2025-10-26)
 
 ## [7.2.4](https://github.com/Cap-go/capacitor-native-market/compare/7.2.3...7.2.4) (2025-10-26)
