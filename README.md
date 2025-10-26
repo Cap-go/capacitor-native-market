@@ -17,6 +17,10 @@ Capacitor community plugin for native market for Play Store/App Store.
 
 Maintenance Status: Actively Maintained
 
+## Documentation
+
+The most complete doc is available here: https://capgo.app/docs/plugins/native-market/
+
 ## Installation
 
 To use npm
