@@ -1,6 +1,6 @@
 {
   "name": "@capgo/native-market",
-  "version": "7.2.12",
+  "version": "7.2.13",
   "description": "A native market plugin for linking to google play or app store.",
   "module": "dist/esm/index.js",
   "main": "dist/plugin.cjs.js",

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [7.2.13](https://github.com/Cap-go/capacitor-native-market/compare/7.2.12...7.2.13) (2025-10-30)
+
+
+### Bug Fixes
+
+* pluginVersion lint issue ([57137a3](https://github.com/Cap-go/capacitor-native-market/commit/57137a3bf7eaf8f9a3f7f45a83d7eb32f0738f8f))
+
 ## [7.2.12](https://github.com/Cap-go/capacitor-native-market/compare/7.2.11...7.2.12) (2025-10-29)
 
 
