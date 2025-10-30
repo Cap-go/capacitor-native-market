@@ -9,6 +9,17 @@
 
 Capacitor community plugin for native market for Play Store/App Store.
 
+## Why Native Market?
+
+Deep-link your users directly to your app's store listing, developer page, or search results. Essential for:
+
+- **Prompting app reviews** - Direct users to leave ratings and reviews
+- **Update notifications** - Send users to download the latest version
+- **Cross-promotion** - Link to your other apps or developer page
+- **Search visibility** - Open store searches for specific terms
+
+Simple, focused plugin that handles all the platform-specific store linking logic for you.
+
 ## Maintainers
 
 | Maintainer      | GitHub                              | Social                                                | Sponsoring Company |
