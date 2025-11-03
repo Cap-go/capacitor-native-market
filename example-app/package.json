@@ -14,8 +14,8 @@
   },
   "dependencies": {
     "@capacitor/core": "latest",
-    "@capacitor/android": "7.4.3",
-    "@capacitor/ios": "7.4.3",
+    "@capacitor/android": "7.4.4",
+    "@capacitor/ios": "7.4.4",
     "@capgo/native-market": "file:.."
   },
   "devDependencies": {
