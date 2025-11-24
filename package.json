@@ -6,7 +6,7 @@
   "main": "dist/plugin.cjs.js",
   "types": "dist/esm/index.d.ts",
   "author": "Martin Donadieu <martin@capgo.app>",
-  "license": "MIT",
+  "license": "MPL-2.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Cap-go/capacitor-native-market.git"
