@@ -63,12 +63,7 @@ public class NativeMarket: CAPPlugin, CAPBridgedPlugin {
 
             DispatchQueue.main.async {
                 if UIApplication.shared.canOpenURL(appUrl) {
-                    if #available(iOS 10.0, *) {
-                        UIApplication.shared.open(appUrl, options: [:]) { (_) in
-                            call.resolve()
-                        }
-                    } else {
-                        UIApplication.shared.openURL(appUrl)
+                    UIApplication.shared.open(appUrl, options: [:]) { (_) in
                         call.resolve()
                     }
                 }
@@ -99,12 +94,7 @@ public class NativeMarket: CAPPlugin, CAPBridgedPlugin {
             let appUrl = URL(string: url)
 
             if UIApplication.shared.canOpenURL(appUrl!) {
-                if #available(iOS 10.0, *) {
-                    UIApplication.shared.open(appUrl!, options: [:]) { (_) in
-                        call.resolve()
-                    }
-                } else {
-                    UIApplication.shared.openURL(appUrl!)
+                UIApplication.shared.open(appUrl!, options: [:]) { (_) in
                     call.resolve()
                 }
             }
