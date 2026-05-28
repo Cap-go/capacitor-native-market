@@ -1,4 +1,4 @@
-# Example App for `@capgo/native-market`
+# Example App for `@capgo/capacitor-native-market`
 
 This Vite project links directly to the local plugin source so you can exercise the native APIs while developing.
 

@@ -1,7 +1,7 @@
 {
   "name": "capacitor-app",
   "version": "1.0.0",
-  "description": "Example Capacitor app for @capgo/native-market",
+  "description": "Example Capacitor app for @capgo/capacitor-native-market",
   "type": "module",
   "keywords": [
     "capacitor",
@@ -16,7 +16,7 @@
     "@capacitor/core": "^8.0.0",
     "@capacitor/android": "^8.0.0",
     "@capacitor/ios": "^8.0.0",
-    "@capgo/native-market": "file:.."
+    "@capgo/capacitor-native-market": "file:.."
   },
   "devDependencies": {
     "@capacitor/cli": "^8.0.0",

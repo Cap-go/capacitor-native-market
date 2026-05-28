@@ -1,4 +1,4 @@
-package app.capgo.native.market;
+package app.capgo.nativemarket;
 
 import com.getcapacitor.BridgeActivity;
 

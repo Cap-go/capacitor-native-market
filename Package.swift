@@ -2,11 +2,11 @@
 import PackageDescription
 
 let package = Package(
-    name: "CapgoNativeMarket",
+    name: "CapgoCapacitorNativeMarket",
     platforms: [.iOS(.v15)],
     products: [
         .library(
-            name: "CapgoNativeMarket",
+            name: "CapgoCapacitorNativeMarket",
             targets: ["NativeMarketPlugin"])
     ],
     dependencies: [

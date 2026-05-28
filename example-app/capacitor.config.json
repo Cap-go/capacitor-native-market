@@ -1,5 +1,5 @@
 {
-  "appId": "app.capgo.native.market",
+  "appId": "app.capgo.nativemarket",
   "appName": "Native Market Example",
   "webDir": "dist",
   "plugins": {
