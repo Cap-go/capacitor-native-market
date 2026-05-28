@@ -1,6 +1,6 @@
 
 import './style.css';
-import { NativeMarket } from '@capgo/native-market';
+import { NativeMarket } from '@capgo/capacitor-native-market';
 
 const plugin = NativeMarket;
 const state = {};

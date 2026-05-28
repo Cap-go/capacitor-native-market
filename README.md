@@ -48,13 +48,13 @@ The most complete doc is available here: https://capgo.app/docs/plugins/native-m
 To use npm
 
 ```bash
-npm install @capgo/native-market
+npm install @capgo/capacitor-native-market
 ```
 
 To use yarn
 
 ```bash
-yarn add @capgo/native-market
+yarn add @capgo/capacitor-native-market
 ```
 
 Sync native files
@@ -84,7 +84,7 @@ No configuration required for this plugin
 ## Usage
 
 ```typescript
-import { NativeMarket } from '@capgo/native-market';
+import { NativeMarket } from '@capgo/capacitor-native-market';
 
 /**
  * This method will launch link in Play/App Store.
