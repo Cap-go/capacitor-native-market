@@ -11,8 +11,10 @@ let package = Package(
             targets: ["CapApp-SPM"])
     ],
     dependencies: [
-        .package(url: "https://github.com/ionic-team/capacitor-swift-pm.git", from: "8.0.0"),
-        .package(name: "CapgoCapacitorNativeMarket", path: "../../../node_modules/.bun/@capgo+capacitor-native-market@file+../node_modules/@capgo/capacitor-native-market")
+        .package(url: "https://github.com/ionic-team/capacitor-swift-pm.git", exact: "8.4.0"),
+        .package(name: "CapgoCapacitorNativeMarket", path: "../../../node_modules/.bun/@capgo+capacitor-native-market@file+..+759ce506b1ed1a42/node_modules/@capgo/capacitor-native-market"),
+        .package(name: "CapgoCapacitorUpdater", path: "../../../node_modules/.bun/@capgo+capacitor-updater@8.47.10+1b808583819c2ac6/node_modules/@capgo/capacitor-updater"),
+        .package(name: "CapacitorSplashScreen", path: "../../../node_modules/.bun/@capacitor+splash-screen@8.0.1+1b808583819c2ac6/node_modules/@capacitor/splash-screen")
     ],
     targets: [
         .target(
@@ -20,7 +22,9 @@ let package = Package(
             dependencies: [
                 .product(name: "Capacitor", package: "capacitor-swift-pm"),
                 .product(name: "Cordova", package: "capacitor-swift-pm"),
-                .product(name: "CapgoCapacitorNativeMarket", package: "CapgoCapacitorNativeMarket")
+                .product(name: "CapgoCapacitorNativeMarket", package: "CapgoCapacitorNativeMarket"),
+                .product(name: "CapgoCapacitorUpdater", package: "CapgoCapacitorUpdater"),
+                .product(name: "CapacitorSplashScreen", package: "CapacitorSplashScreen")
             ]
         )
     ]
