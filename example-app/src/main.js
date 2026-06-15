@@ -1,3 +1,5 @@
+import { CapacitorUpdater } from '@capgo/capacitor-updater';
+import { Capacitor } from '@capacitor/core';
 
 import './style.css';
 import { NativeMarket } from '@capgo/capacitor-native-market';
@@ -5,36 +7,44 @@ import { NativeMarket } from '@capgo/capacitor-native-market';
 const plugin = NativeMarket;
 const state = {};
 
-
 const actions = [
-{
-              id: 'open-store-listing',
-              label: 'Open store listing',
-              description: 'Opens the App Store / Play Store listing for the provided identifier.',
-              inputs: [{ name: 'appId', label: 'Bundle / package id', type: 'text', placeholder: 'com.example.app', value: 'com.google.android.youtube' }, { name: 'country', label: 'Country code (optional)', type: 'text', placeholder: 'us' }],
-              run: async (values) => {
-                const appId = values.appId || '';
-if (!appId) {
-  throw new Error('Provide an app id.');
-}
-await plugin.openStoreListing({ appId, country: values.country || undefined });
-return 'Requested store listing open.';
-              },
-            },
-{
-              id: 'search-store',
-              label: 'Search store',
-              description: 'Launches a store search intent.',
-              inputs: [{ name: 'terms', label: 'Search terms', type: 'text', value: 'calendar' }],
-              run: async (values) => {
-                const terms = values.terms || '';
-if (!terms) {
-  throw new Error('Provide search terms.');
-}
-await plugin.search({ terms });
-return 'Requested store search.';
-              },
-            }
+  {
+    id: 'open-store-listing',
+    label: 'Open store listing',
+    description: 'Opens the App Store / Play Store listing for the provided identifier.',
+    inputs: [
+      {
+        name: 'appId',
+        label: 'Bundle / package id',
+        type: 'text',
+        placeholder: 'com.example.app',
+        value: 'com.google.android.youtube',
+      },
+      { name: 'country', label: 'Country code (optional)', type: 'text', placeholder: 'us' },
+    ],
+    run: async (values) => {
+      const appId = values.appId || '';
+      if (!appId) {
+        throw new Error('Provide an app id.');
+      }
+      await plugin.openStoreListing({ appId, country: values.country || undefined });
+      return 'Requested store listing open.';
+    },
+  },
+  {
+    id: 'search-store',
+    label: 'Search store',
+    description: 'Launches a store search intent.',
+    inputs: [{ name: 'terms', label: 'Search terms', type: 'text', value: 'calendar' }],
+    run: async (values) => {
+      const terms = values.terms || '';
+      if (!terms) {
+        throw new Error('Provide search terms.');
+      }
+      await plugin.search({ terms });
+      return 'Requested store search.';
+    },
+  },
 ];
 
 const actionSelect = document.getElementById('action-select');
@@ -188,3 +198,9 @@ runButton.addEventListener('click', async () => {
 });
 
 populateActions();
+
+if (Capacitor.isNativePlatform()) {
+  CapacitorUpdater.notifyAppReady().catch((error) => {
+    console.error('Capgo notifyAppReady failed', error);
+  });
+}
