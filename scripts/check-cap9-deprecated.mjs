@@ -29,7 +29,8 @@ const SKIP_DIRS = new Set([
   "example-app",
 ]);
 
-const rules = JSON.parse(fs.readFileSync(path.join(__dirname, "cap9-deprecated-rules.json"), "utf8")).map(
+const rulesPath = path.join(__dirname, "cap9-deprecated-rules.json");
+const rules = JSON.parse(fs.readFileSync(rulesPath, "utf8")).map(
   (rule) => ({
     ...rule,
     re: new RegExp(rule.pattern),
@@ -39,6 +40,26 @@ const rules = JSON.parse(fs.readFileSync(path.join(__dirname, "cap9-deprecated-r
 function isInsideRoot(rootDir, targetPath) {
   const rel = path.relative(rootDir, targetPath);
   return rel === "" || (!rel.startsWith("..") && !path.isAbsolute(rel));
+}
+
+function readUtf8UnderRoot(rootDir, filePath) {
+  if (!isInsideRoot(rootDir, filePath)) return null;
+  let resolvedRoot;
+  let resolvedFile;
+  try {
+    resolvedRoot = fs.realpathSync.native(rootDir);
+    resolvedFile = fs.realpathSync.native(filePath);
+  } catch {
+    return null;
+  }
+  if (resolvedFile !== resolvedRoot && !resolvedFile.startsWith(`${resolvedRoot}${path.sep}`)) {
+    return null;
+  }
+  try {
+    return fs.readFileSync(resolvedFile, "utf8");
+  } catch {
+    return null;
+  }
 }
 
 function listSourceFiles(scanRoot, exts) {
@@ -73,7 +94,9 @@ function listSourceFiles(scanRoot, exts) {
 function scanFile(filePath, rule) {
   if (!isInsideRoot(pluginDir, filePath)) return [];
   const rel = path.relative(pluginDir, filePath);
-  const lines = fs.readFileSync(filePath, "utf8").split(/\r?\n/);
+  const text = readUtf8UnderRoot(pluginDir, filePath);
+  if (text == null) return [];
+  const lines = text.split(/\r?\n/);
   const hits = [];
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
@@ -93,14 +116,15 @@ function scanFile(filePath, rule) {
 }
 
 const pkgPath = path.join(pluginDir, "package.json");
-if (!fs.existsSync(pkgPath)) {
+const pkgText = readUtf8UnderRoot(pluginDir, pkgPath);
+if (pkgText == null) {
   console.error(`[cap9-deprecated] ERROR: missing package.json in ${pluginDir}`);
   process.exit(2);
 }
 
 let pkg;
 try {
-  pkg = JSON.parse(fs.readFileSync(pkgPath, "utf8"));
+  pkg = JSON.parse(pkgText);
 } catch (e) {
   console.error(`[cap9-deprecated] ERROR: invalid package.json: ${e?.message || e}`);
   process.exit(2);
