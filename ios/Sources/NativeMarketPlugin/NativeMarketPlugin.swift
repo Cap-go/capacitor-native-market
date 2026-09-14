@@ -92,8 +92,12 @@ public class NativeMarket: CAPPlugin, CAPBridgedPlugin {
             return
         }
 
-        let url = "itms-apps://itunes.apple.com/search?term=" + terms
-        guard let appUrl = URL(string: url) else {
+        var components = URLComponents()
+        components.scheme = "itms-apps"
+        components.host = "itunes.apple.com"
+        components.path = "/search"
+        components.queryItems = [URLQueryItem(name: "term", value: terms)]
+        guard let appUrl = components.url else {
             call.reject("Invalid search URL")
             return
         }
