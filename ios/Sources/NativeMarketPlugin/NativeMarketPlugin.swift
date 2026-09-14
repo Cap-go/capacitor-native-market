@@ -87,19 +87,25 @@ public class NativeMarket: CAPPlugin, CAPBridgedPlugin {
     }
 
     @objc func search(_ call: CAPPluginCall) {
-        if call.hasOption("terms") {
-            let terms = call.getString("terms")
-
-            let url = "itms-apps://itunes.apple.com/search?term=" + terms!
-            let appUrl = URL(string: url)
-
-            if UIApplication.shared.canOpenURL(appUrl!) {
-                UIApplication.shared.open(appUrl!, options: [:]) { (_) in
-                    call.resolve()
-                }
-            }
-        } else {
+        guard let terms = call.getString("terms") else {
             call.reject("terms is missing")
+            return
+        }
+
+        var components = URLComponents()
+        components.scheme = "itms-apps"
+        components.host = "itunes.apple.com"
+        components.path = "/search"
+        components.queryItems = [URLQueryItem(name: "term", value: terms)]
+        guard let appUrl = components.url else {
+            call.reject("Invalid search URL")
+            return
+        }
+
+        if UIApplication.shared.canOpenURL(appUrl) {
+            UIApplication.shared.open(appUrl, options: [:]) { (_) in
+                call.resolve()
+            }
         }
     }
 
