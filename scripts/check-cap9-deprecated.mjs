@@ -13,9 +13,12 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import rulesJson from "./cap9-deprecated-rules.json" with { type: "json" };
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const pluginDir = process.cwd();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const pluginDir = path.join(__dirname, "..");
+
 const SKIP_DIRS = new Set([
   "node_modules",
   "dist",
@@ -29,45 +32,16 @@ const SKIP_DIRS = new Set([
   "example-app",
 ]);
 
-const rulesPath = path.join(__dirname, "cap9-deprecated-rules.json");
-const rules = JSON.parse(fs.readFileSync(rulesPath, "utf8")).map(
-  (rule) => ({
-    ...rule,
-    re: new RegExp(rule.pattern),
-  }),
-);
-
-function isInsideRoot(rootDir, targetPath) {
-  const rel = path.relative(rootDir, targetPath);
-  return rel === "" || (!rel.startsWith("..") && !path.isAbsolute(rel));
-}
-
-function readUtf8UnderRoot(rootDir, filePath) {
-  if (!isInsideRoot(rootDir, filePath)) return null;
-  let resolvedRoot;
-  let resolvedFile;
-  try {
-    resolvedRoot = fs.realpathSync.native(rootDir);
-    resolvedFile = fs.realpathSync.native(filePath);
-  } catch {
-    return null;
-  }
-  if (resolvedFile !== resolvedRoot && !resolvedFile.startsWith(`${resolvedRoot}${path.sep}`)) {
-    return null;
-  }
-  try {
-    return fs.readFileSync(resolvedFile, "utf8");
-  } catch {
-    return null;
-  }
-}
+const rules = rulesJson.map((rule) => ({
+  ...rule,
+  re: new RegExp(rule.pattern),
+}));
 
 function listSourceFiles(scanRoot, exts) {
   const out = [];
   const stack = [scanRoot];
   while (stack.length) {
     const dir = stack.pop();
-    if (!isInsideRoot(pluginDir, dir)) continue;
     let entries;
     try {
       entries = fs.readdirSync(dir, { withFileTypes: true });
@@ -76,7 +50,6 @@ function listSourceFiles(scanRoot, exts) {
     }
     for (const entry of entries) {
       const full = path.join(dir, entry.name);
-      if (!isInsideRoot(pluginDir, full)) continue;
       if (entry.isDirectory()) {
         if (SKIP_DIRS.has(entry.name)) continue;
         if (entry.name === "Tests" || entry.name === "androidTest" || entry.name === "test") continue;
@@ -92,11 +65,8 @@ function listSourceFiles(scanRoot, exts) {
 }
 
 function scanFile(filePath, rule) {
-  if (!isInsideRoot(pluginDir, filePath)) return [];
   const rel = path.relative(pluginDir, filePath);
-  const text = readUtf8UnderRoot(pluginDir, filePath);
-  if (text == null) return [];
-  const lines = text.split(/\r?\n/);
+  const lines = fs.readFileSync(filePath, "utf8").split(/\r?\n/);
   const hits = [];
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
@@ -116,15 +86,14 @@ function scanFile(filePath, rule) {
 }
 
 const pkgPath = path.join(pluginDir, "package.json");
-const pkgText = readUtf8UnderRoot(pluginDir, pkgPath);
-if (pkgText == null) {
-  console.error(`[cap9-deprecated] ERROR: missing package.json in ${pluginDir}`);
+if (!fs.existsSync(pkgPath)) {
+  console.error(`[cap9-deprecated] ERROR: missing package.json at ${pkgPath}`);
   process.exit(2);
 }
 
 let pkg;
 try {
-  pkg = JSON.parse(pkgText);
+  pkg = JSON.parse(fs.readFileSync(pkgPath, "utf8"));
 } catch (e) {
   console.error(`[cap9-deprecated] ERROR: invalid package.json: ${e?.message || e}`);
   process.exit(2);
@@ -149,7 +118,7 @@ for (const rule of rules) {
           ? path.join(rootPath, "src", "main")
           : rootPath;
 
-    if (!fs.existsSync(scanRoot) || !isInsideRoot(pluginDir, scanRoot)) continue;
+    if (!fs.existsSync(scanRoot)) continue;
 
     for (const file of listSourceFiles(scanRoot, rule.exts)) {
       violations.push(...scanFile(file, rule));
