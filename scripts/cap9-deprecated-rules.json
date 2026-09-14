@@ -129,7 +129,7 @@
     "id": "android-startActivityForResult-int",
     "roots": ["android"],
     "exts": [".java", ".kt"],
-    "pattern": "\\bstartActivityForResult\\s*\\([^)]*,\\s*[^)]*,\\s*\\d+\\s*\\)",
+    "pattern": "(^|[^[:alnum:]_])startActivityForResult[[:space:]]*\\([^)]*,[[:space:]]*[^)]*,[[:space:]]*[[:digit:]]+[[:space:]]*\\)",
     "hint": "startActivityForResult(..., int) removed; use String callback id with @ActivityCallback."
   }
 ]

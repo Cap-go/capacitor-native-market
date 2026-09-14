@@ -21,6 +21,11 @@ import rulesJson from "./cap9-deprecated-rules.json" with { type: "json" };
 
 const pluginDir = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 
+if (!fs.existsSync(GIT_BIN)) {
+  console.error(`[cap9-deprecated] ERROR: expected git at ${GIT_BIN}`);
+  process.exit(2);
+}
+
 const cap = typeof pkg.capacitor === "object" && pkg.capacitor ? pkg.capacitor : {};
 if (!cap.android && !cap.ios) {
   process.exit(0);
@@ -67,6 +72,9 @@ const violations = [];
 
 for (const rule of rulesJson) {
   for (const hit of gitGrep(rule.pattern)) {
+    const hasAllowedRoot = rule.roots.some((root) => hit.file.startsWith(`${root}/`));
+    const hasAllowedExtension = rule.exts.some((ext) => hit.file.endsWith(ext));
+    if (!hasAllowedRoot || !hasAllowedExtension) continue;
     const trimmed = hit.text.trim();
     if (trimmed.startsWith("//") || trimmed.startsWith("*")) continue;
     if (rule.id === "android-startActivityForResult-int" && hit.text.includes("@ActivityCallback")) continue;
