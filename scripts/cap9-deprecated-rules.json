@@ -1,0 +1,135 @@
+[
+  {
+    "id": "ios-hasOption",
+    "roots": ["ios"],
+    "exts": [".swift", ".m", ".mm"],
+    "pattern": "\\.hasOption\\s*\\(",
+    "hint": "Use typed CAPPluginCall accessors (getString, getInt, …) instead of hasOption(_:)."
+  },
+  {
+    "id": "ios-cap-bridge-shim",
+    "roots": ["ios"],
+    "exts": [".swift", ".m", ".mm"],
+    "pattern": "\\bCAPBridge\\.",
+    "hint": "CAPBridge compatibility shim removed in Capacitor 9; use ApplicationDelegateProxy / Notification.Name.capacitor*."
+  },
+  {
+    "id": "ios-cap-notifications",
+    "roots": ["ios"],
+    "exts": [".swift", ".m", ".mm"],
+    "pattern": "\\bCAPNotifications\\b",
+    "hint": "CAPNotifications removed; use Notification.Name.capacitor* constants."
+  },
+  {
+    "id": "ios-getConfigValue",
+    "roots": ["ios"],
+    "exts": [".swift", ".m", ".mm"],
+    "pattern": "\\bgetConfigValue\\s*\\(",
+    "hint": "getConfigValue(_:) removed; use getConfig() and PluginConfig typed accessors."
+  },
+  {
+    "id": "ios-legacy-bridge-methods",
+    "roots": ["ios"],
+    "exts": [".swift"],
+    "pattern": "\\b(getWebView\\s*\\(|isSimulator\\s*\\(|isDevMode\\s*\\(|getStatusBarVisible\\s*\\(|setStatusBarVisible\\s*\\(|getLocalUrl\\s*\\()",
+    "hint": "Legacy CAPBridgeProtocol methods removed; use properties on the bridge (webView, isSimEnvironment, …)."
+  },
+  {
+    "id": "ios-legacy-typealiases",
+    "roots": ["ios"],
+    "exts": [".swift"],
+    "pattern": "\\b(PluginCallErrorData|PluginResultData|JSResultBody)\\b",
+    "hint": "Legacy result typealiases removed; use PluginCallResultData."
+  },
+  {
+    "id": "ios-https-interceptor-id",
+    "roots": ["ios"],
+    "exts": [".swift"],
+    "pattern": "\\bhttpsInterceptorStartIdentifier\\b",
+    "hint": "Renamed to httpInterceptorStartIdentifier in Capacitor 9."
+  },
+  {
+    "id": "android-native-plugin-annotation",
+    "roots": ["android"],
+    "exts": [".java", ".kt"],
+    "pattern": "@NativePlugin\\b",
+    "hint": "@NativePlugin removed; use @CapacitorPlugin."
+  },
+  {
+    "id": "android-call-hasOption",
+    "roots": ["android"],
+    "exts": [".java", ".kt"],
+    "pattern": "\\.hasOption\\s*\\(",
+    "hint": "PluginCall.hasOption(String) removed; use typed accessors (getString, getInt, …)."
+  },
+  {
+    "id": "android-call-save",
+    "roots": ["android"],
+    "exts": [".java", ".kt"],
+    "pattern": "\\bcall\\.save\\s*\\(\\s*\\)",
+    "hint": "PluginCall.save() removed; use setKeepAlive(true)."
+  },
+  {
+    "id": "android-call-isSaved",
+    "roots": ["android"],
+    "exts": [".java", ".kt"],
+    "pattern": "\\bcall\\.isSaved\\s*\\(\\s*\\)",
+    "hint": "PluginCall.isSaved() removed; use isKeptAlive()."
+  },
+  {
+    "id": "android-call-isReleased",
+    "roots": ["android"],
+    "exts": [".java", ".kt"],
+    "pattern": "\\bcall\\.isReleased\\s*\\(\\s*\\)",
+    "hint": "PluginCall.isReleased() removed; bridge manages released calls."
+  },
+  {
+    "id": "android-getConfigValue",
+    "roots": ["android"],
+    "exts": [".java", ".kt"],
+    "pattern": "\\bgetConfigValue\\s*\\(",
+    "hint": "Plugin.getConfigValue(String) removed; use getConfig() and PluginConfig accessors."
+  },
+  {
+    "id": "android-https-interceptor",
+    "roots": ["android"],
+    "exts": [".java", ".kt"],
+    "pattern": "\\bCAPACITOR_HTTPS_INTERCEPTOR_START\\b",
+    "hint": "Renamed to CAPACITOR_HTTP_INTERCEPTOR_START in Capacitor 9."
+  },
+  {
+    "id": "android-plugin-saveCall",
+    "roots": ["android"],
+    "exts": [".java", ".kt"],
+    "pattern": "\\bsaveCall\\s*\\(\\s*call\\s*\\)",
+    "hint": "Plugin.saveCall(PluginCall) removed; use Bridge.saveCall or call.setKeepAlive(true)."
+  },
+  {
+    "id": "android-getSavedCall-no-arg",
+    "roots": ["android"],
+    "exts": [".java", ".kt"],
+    "pattern": "\\bgetSavedCall\\s*\\(\\s*\\)",
+    "hint": "Plugin.getSavedCall() removed; use Bridge.getSavedCall(String)."
+  },
+  {
+    "id": "android-freeSavedCall",
+    "roots": ["android"],
+    "exts": [".java", ".kt"],
+    "pattern": "\\bfreeSavedCall\\s*\\(\\s*\\)",
+    "hint": "Plugin.freeSavedCall() removed; use PluginCall.release(Bridge)."
+  },
+  {
+    "id": "android-pluginRequestPermission",
+    "roots": ["android"],
+    "exts": [".java", ".kt"],
+    "pattern": "\\bpluginRequest(Permission|Permissions|AllPermissions)\\s*\\(",
+    "hint": "pluginRequest* permission helpers removed; use requestPermissionForAlias(s) / requestAllPermissions with callbacks."
+  },
+  {
+    "id": "android-startActivityForResult-int",
+    "roots": ["android"],
+    "exts": [".java", ".kt"],
+    "pattern": "\\bstartActivityForResult\\s*\\([^)]*,\\s*[^)]*,\\s*\\d+\\s*\\)",
+    "hint": "startActivityForResult(..., int) removed; use String callback id with @ActivityCallback."
+  }
+]
