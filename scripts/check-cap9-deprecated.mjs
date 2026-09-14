@@ -10,119 +10,68 @@
  * Usage: node scripts/check-cap9-deprecated.mjs
  */
 
-import fs from "node:fs";
+import { spawnSync } from "node:child_process";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import pkg from "../package.json" with { type: "json" };
 import rulesJson from "./cap9-deprecated-rules.json" with { type: "json" };
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const pluginDir = path.join(__dirname, "..");
-
-const SKIP_DIRS = new Set([
-  "node_modules",
-  "dist",
-  "build",
-  ".build",
-  ".gradle",
-  "Pods",
-  "DerivedData",
-  ".swiftpm",
-  ".git",
-  "example-app",
-]);
-
-const rules = rulesJson.map((rule) => ({
-  ...rule,
-  re: new RegExp(rule.pattern),
-}));
-
-function listSourceFiles(scanRoot, exts) {
-  const out = [];
-  const stack = [scanRoot];
-  while (stack.length) {
-    const dir = stack.pop();
-    let entries;
-    try {
-      entries = fs.readdirSync(dir, { withFileTypes: true });
-    } catch {
-      continue;
-    }
-    for (const entry of entries) {
-      const full = path.join(dir, entry.name);
-      if (entry.isDirectory()) {
-        if (SKIP_DIRS.has(entry.name)) continue;
-        if (entry.name === "Tests" || entry.name === "androidTest" || entry.name === "test") continue;
-        stack.push(full);
-        continue;
-      }
-      if (!entry.isFile()) continue;
-      if (exts.some((ext) => entry.name.endsWith(ext))) out.push(full);
-    }
-  }
-  out.sort();
-  return out;
-}
-
-function scanFile(filePath, rule) {
-  const rel = path.relative(pluginDir, filePath);
-  const lines = fs.readFileSync(filePath, "utf8").split(/\r?\n/);
-  const hits = [];
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
-    const trimmed = line.trim();
-    if (trimmed.startsWith("//") || trimmed.startsWith("*")) continue;
-    if (!rule.re.test(line)) continue;
-    if (rule.id === "android-startActivityForResult-int" && line.includes("@ActivityCallback")) continue;
-    hits.push({
-      rule: rule.id,
-      file: rel,
-      line: i + 1,
-      hint: rule.hint,
-      snippet: trimmed.slice(0, 160),
-    });
-  }
-  return hits;
-}
-
-const pkgPath = path.join(pluginDir, "package.json");
-if (!fs.existsSync(pkgPath)) {
-  console.error(`[cap9-deprecated] ERROR: missing package.json at ${pkgPath}`);
-  process.exit(2);
-}
-
-let pkg;
-try {
-  pkg = JSON.parse(fs.readFileSync(pkgPath, "utf8"));
-} catch (e) {
-  console.error(`[cap9-deprecated] ERROR: invalid package.json: ${e?.message || e}`);
-  process.exit(2);
-}
+const pluginDir = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 
 const cap = typeof pkg.capacitor === "object" && pkg.capacitor ? pkg.capacitor : {};
 if (!cap.android && !cap.ios) {
   process.exit(0);
 }
 
+const scanPaths = [];
+if (cap.ios) scanPaths.push("ios/Sources");
+if (cap.android) scanPaths.push("android/src/main");
+if (!scanPaths.length) {
+  process.exit(0);
+}
+
+/** @type {{ file: string; line: number; text: string }[]} */
+function gitGrep(pattern) {
+  const result = spawnSync(
+    "git",
+    ["grep", "-n", "-E", pattern, "--", ...scanPaths],
+    { cwd: pluginDir, encoding: "utf8" },
+  );
+  if (result.status === 1 && !result.stdout.trim()) return [];
+  if (result.status !== 0 && result.status !== 1) {
+    console.error(`[cap9-deprecated] ERROR: git grep failed (${result.status}): ${result.stderr || result.stdout}`);
+    process.exit(2);
+  }
+  const hits = [];
+  for (const row of result.stdout.split(/\r?\n/)) {
+    if (!row) continue;
+    const sep = row.indexOf(":");
+    if (sep <= 0) continue;
+    const lineSep = row.indexOf(":", sep + 1);
+    if (lineSep <= sep) continue;
+    const file = row.slice(0, sep);
+    const line = Number.parseInt(row.slice(sep + 1, lineSep), 10);
+    const text = row.slice(lineSep + 1);
+    if (!Number.isFinite(line)) continue;
+    hits.push({ file, line, text });
+  }
+  return hits;
+}
+
 const violations = [];
 
-for (const rule of rules) {
-  for (const rootName of rule.roots) {
-    const rootPath = path.join(pluginDir, rootName);
-    if (!fs.existsSync(rootPath)) continue;
-
-    const scanRoot =
-      rootName === "ios" && fs.existsSync(path.join(rootPath, "Sources"))
-        ? path.join(rootPath, "Sources")
-        : rootName === "android"
-          ? path.join(rootPath, "src", "main")
-          : rootPath;
-
-    if (!fs.existsSync(scanRoot)) continue;
-
-    for (const file of listSourceFiles(scanRoot, rule.exts)) {
-      violations.push(...scanFile(file, rule));
-    }
+for (const rule of rulesJson) {
+  for (const hit of gitGrep(rule.pattern)) {
+    const trimmed = hit.text.trim();
+    if (trimmed.startsWith("//") || trimmed.startsWith("*")) continue;
+    if (rule.id === "android-startActivityForResult-int" && hit.text.includes("@ActivityCallback")) continue;
+    violations.push({
+      rule: rule.id,
+      file: hit.file,
+      line: hit.line,
+      hint: rule.hint,
+      snippet: trimmed.slice(0, 160),
+    });
   }
 }
 
