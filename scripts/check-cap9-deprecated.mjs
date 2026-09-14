@@ -10,9 +10,12 @@
  * Usage: node scripts/check-cap9-deprecated.mjs
  */
 
-import { spawnSync } from "node:child_process";
+import { execFileSync } from "node:child_process";
+import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+
+const GIT_BIN = "/usr/bin/git";
 import pkg from "../package.json" with { type: "json" };
 import rulesJson from "./cap9-deprecated-rules.json" with { type: "json" };
 
@@ -32,18 +35,20 @@ if (!scanPaths.length) {
 
 /** @type {{ file: string; line: number; text: string }[]} */
 function gitGrep(pattern) {
-  const result = spawnSync(
-    "git",
-    ["grep", "-n", "-E", pattern, "--", ...scanPaths],
-    { cwd: pluginDir, encoding: "utf8" },
-  );
-  if (result.status === 1 && !result.stdout.trim()) return [];
-  if (result.status !== 0 && result.status !== 1) {
-    console.error(`[cap9-deprecated] ERROR: git grep failed (${result.status}): ${result.stderr || result.stdout}`);
+  let stdout = "";
+  try {
+    stdout = execFileSync(GIT_BIN, ["grep", "-n", "-E", pattern, "--", ...scanPaths], {
+      cwd: pluginDir,
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "pipe"],
+    });
+  } catch (e) {
+    if (e?.status === 1) return [];
+    console.error(`[cap9-deprecated] ERROR: git grep failed: ${e?.stderr || e?.message || e}`);
     process.exit(2);
   }
   const hits = [];
-  for (const row of result.stdout.split(/\r?\n/)) {
+  for (const row of stdout.split(/\r?\n/)) {
     if (!row) continue;
     const sep = row.indexOf(":");
     if (sep <= 0) continue;
