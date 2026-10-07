@@ -1,13 +1,27 @@
 # Capacitor Native Market Plugin
 
-<a href="https://capgo.app/"><img src="https://capgo.app/readme-banner.svg?repo=Cap-go/capacitor-native-market" alt="Capgo - Instant updates for Capacitor" /></a>
+Send users to your app's store page from your Capacitor app, to rate it, update it or discover your other apps on the App Store and Google Play.
+
+<a href="https://capgo.app/?ref=plugin_native_market"><img src="https://capgo.app/readme-banner.svg?repo=Cap-go/capacitor-native-market" alt="Capgo - Instant updates for Capacitor" /></a>
 
 <div align="center">
-  <h2><a href="https://capgo.app/?ref=plugin_native_market"> ➡️ Get Instant updates for your App with Capgo</a></h2>
-  <h2><a href="https://capgo.app/consulting/?ref=plugin_native_market"> Missing a feature? We’ll build the plugin for you 💪</a></h2>
+  <p><b>Capgo</b>: open-source live updates for Ionic and Capacitor apps. Ship OTA fixes and features instantly, without waiting for app store review.</p>
+  <h2><a href="https://capgo.app/register/?ref=plugin_native_market">➡️ Get started for free</a></h2>
+  <p>14-day unlimited free trial. No credit card required</p>
+  <p><a href="https://capgo.app/consulting/?ref=plugin_native_market">Missing a feature? We'll build the plugin for you 💪</a></p>
 </div>
 
-Capacitor community plugin for native market for Play Store/App Store.
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Cap-go/capacitor-native-market/main/assets/github-social-preview.png" alt="@capgo/capacitor-native-market for Capacitor apps" width="300" />
+</p>
+
+## Key features
+
+- **Store listing**: `openStoreListing()` opens an app's page on the App Store or Google Play.
+- **Search**: `search()` opens a store search for your terms.
+- **Developer page**: `openDevPage()` on Google Play.
+- **Collections**: `openCollection()` and `openEditorChoicePage()` on Google Play.
+- **Platforms**: iOS and Android. Developer pages, collections and Editor's choice are Android only. Not available on web.
 
 ## Why Native Market?
 
