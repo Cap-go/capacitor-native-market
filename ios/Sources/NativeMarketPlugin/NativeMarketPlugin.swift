@@ -25,7 +25,7 @@ struct APIResult: Codable {
  */
 @objc(NativeMarket)
 public class NativeMarket: CAPPlugin, CAPBridgedPlugin {
-    private let pluginVersion: String = "8.0.59"
+    private let pluginVersion: String = "8.0.60"
     public let identifier = "NativeMarketPlugin"
     public let jsName = "NativeMarket"
     public let pluginMethods: [CAPPluginMethod] = [
