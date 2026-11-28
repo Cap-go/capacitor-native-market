@@ -270,8 +270,7 @@ Android only.
 search(options: { terms: string; }) => Promise<void>
 ```
 
-Search the Play Store with custom search terms.
-Android only.
+Search the Play Store (Android) or App Store (iOS) with custom search terms.
 
 | Param         | Type                            | Description                       |
 | ------------- | ------------------------------- | --------------------------------- |

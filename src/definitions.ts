@@ -80,12 +80,11 @@ export interface NativeMarketPlugin {
   openEditorChoicePage(options: { editorChoice: string }): Promise<void>;
 
   /**
-   * Search the Play Store with custom search terms.
-   * Android only.
+   * Search the Play Store (Android) or App Store (iOS) with custom search terms.
    *
    * @param options - Configuration with search terms
    * @returns Promise that resolves when the search is opened
-   * @throws Error if opening search fails or if called on iOS
+   * @throws Error if opening search fails
    * @since 1.0.0
    * @example
    * ```typescript

@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 import Capacitor
 
 struct APIResult: Codable {
@@ -19,6 +20,13 @@ struct APIResult: Codable {
     }
 }
 
+protocol NativeMarketURLOpening {
+    func canOpenURL(_ url: URL) -> Bool
+    func open(_ url: URL, options: [UIApplication.OpenExternalURLOptionsKey: Any], completionHandler completion: ((Bool) -> Void)?)
+}
+
+extension UIApplication: NativeMarketURLOpening {}
+
 /**
  * Please read the Capacitor iOS Plugin Development Guide
  * here: https://capacitor.ionicframework.com/docs/plugins/ios
@@ -36,6 +44,22 @@ public class NativeMarket: CAPPlugin, CAPBridgedPlugin {
         CAPPluginMethod(name: "search", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "getPluginVersion", returnType: CAPPluginReturnPromise)
     ]
+    var urlOpener: NativeMarketURLOpening = UIApplication.shared
+
+    func openStoreURL(_ url: URL, call: CAPPluginCall) {
+        if urlOpener.canOpenURL(url) {
+            urlOpener.open(url, options: [:]) { success in
+                if success {
+                    call.resolve()
+                } else {
+                    call.reject("Failed to open App Store URL")
+                }
+            }
+        } else {
+            call.reject("Cannot open App Store URL")
+        }
+    }
+
     @objc func openStoreListing(_ call: CAPPluginCall) {
         guard let appId = call.getString("appId") else {
             call.reject("appId is missing")
@@ -62,11 +86,7 @@ public class NativeMarket: CAPPlugin, CAPBridgedPlugin {
             }
 
             DispatchQueue.main.async {
-                if UIApplication.shared.canOpenURL(appUrl) {
-                    UIApplication.shared.open(appUrl, options: [:]) { (_) in
-                        call.resolve()
-                    }
-                }
+                self.openStoreURL(appUrl, call: call)
             }
         } catch {
             print("Error: \(error.localizedDescription)")
@@ -102,11 +122,7 @@ public class NativeMarket: CAPPlugin, CAPBridgedPlugin {
             return
         }
 
-        if UIApplication.shared.canOpenURL(appUrl) {
-            UIApplication.shared.open(appUrl, options: [:]) { (_) in
-                call.resolve()
-            }
-        }
+        openStoreURL(appUrl, call: call)
     }
 
     @objc func getPluginVersion(_ call: CAPPluginCall) {
