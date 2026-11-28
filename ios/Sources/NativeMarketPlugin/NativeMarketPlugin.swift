@@ -33,7 +33,7 @@ extension UIApplication: NativeMarketURLOpening {}
  */
 @objc(NativeMarket)
 public class NativeMarket: CAPPlugin, CAPBridgedPlugin {
-    private let pluginVersion: String = "8.0.60"
+    private let pluginVersion: String = "8.0.61"
     public let identifier = "NativeMarketPlugin"
     public let jsName = "NativeMarket"
     public let pluginMethods: [CAPPluginMethod] = [
